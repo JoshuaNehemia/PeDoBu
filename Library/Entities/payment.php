@@ -18,45 +18,45 @@ class Payment
     }
 
     // ID
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
 
-    public function setId(int $id): void
+    public function setId($id)
     {
         $this->id = $id;
     }
 
     // Orders ID
-    public function getOrdersId(): int
+    public function getOrdersId()
     {
         return $this->ordersId;
     }
 
-    public function setOrdersId(int $ordersId): void
+    public function setOrdersId($ordersId)
     {
         $this->ordersId = $ordersId;
     }
 
     // Fare
-    public function getFare(): float
+    public function getFare()
     {
         return $this->fare;
     }
 
-    public function setFare(float $fare): void
+    public function setFare($fare)
     {
         $this->fare = $fare;
     }
 
     // Paid Time
-    public function getPaidTime(): \DateTime
+    public function getPaidTime()
     {
         return $this->paidTime;
     }
 
-    public function setPaidTime(string $paidTime): void
+    public function setPaidTime($paidTime)
     {
         $this->paidTime = $paidTime;
     }
