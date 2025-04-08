@@ -32,7 +32,7 @@ To design and demonstrate a secure system architecture for an online taxi and de
 - **Course**: Information Security and Assurance
 - **University**: University of Surabaya
 - **Team Names** : Percaya Doa Ibu (PeDoBu)
-- **Team Members**: Joshua, Yanto, Felix, Vivi, Evan
+- **Team Members**: Joshua, Ariyanto, Felix, Vivi, Evan
 
 ## 🧾 License
 
