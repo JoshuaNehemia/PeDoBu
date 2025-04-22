@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,12 +10,14 @@
     * {
       box-sizing: border-box;
     }
+
     body {
       margin: 0;
       font-family: 'DM Sans', sans-serif;
       display: flex;
       overflow-x: hidden;
     }
+
     .sidebar {
       width: 80px;
       background-color: #F8F8F8;
@@ -30,6 +33,7 @@
       left: 0;
       z-index: 1000;
     }
+
     .sidebar .top-section,
     .sidebar .middle-section,
     .sidebar .bottom-section {
@@ -37,42 +41,50 @@
       flex-direction: column;
       align-items: center;
     }
+
     .sidebar button {
       background: none;
       border: none;
       margin: 10px 0;
       cursor: pointer;
     }
+
     .sidebar img {
       width: 40px;
       height: 40px;
     }
+
     .content {
       margin-left: 80px;
       flex-grow: 1;
       padding: 30px;
       position: relative;
     }
+
     .grafis-kanan-atas {
       position: absolute;
       top: 0;
       right: 0;
       width: 400px;
     }
+
     .header-section {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
       flex-wrap: wrap;
     }
+
     .greeting-container {
       max-width: 60%;
     }
+
     .greeting-container h1 {
       margin: 0;
       font-size: 32px;
       font-family: 'DM Sans', sans-serif;
     }
+
     .saldo-container {
       background-color: #f6f6f6;
       padding: 20px;
@@ -83,6 +95,7 @@
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
       margin-top: 20px;
     }
+
     .saldo-container button {
       background-color: #f6f6f6;
       color: white;
@@ -94,10 +107,12 @@
       align-items: center;
       gap: 8px;
     }
+
     .saldo-container button img {
       width: 48px;
       height: 52px;
     }
+
     .section-header {
       display: flex;
       align-items: center;
@@ -105,6 +120,7 @@
       margin-top: 40px;
       margin-bottom: 10px;
     }
+
     .section-header .section-title {
       font-size: 24px;
       font-weight: bold;
@@ -112,32 +128,38 @@
       text-align: left;
       font-family: 'DM Sans', sans-serif;
     }
+
     .card-container {
       display: flex;
       gap: 30px;
       flex-wrap: wrap;
       justify-content: center;
     }
+
     .card {
       width: 400px;
       background-color: white;
       border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
+
     .card img {
       width: 100%;
       height: auto;
     }
+
     .card .description {
       padding: 15px 20px;
     }
-    .dompet img{
-        width: 88px;
-        height: 40x;
+
+    .dompet img {
+      width: 88px;
+      height: 40x;
     }
   </style>
 </head>
+
 <body>
   <div class="sidebar">
     <div class="top-section">
@@ -162,7 +184,7 @@
         <h1>Hi Username!</h1>
         <div class="saldo-container">
           <div>
-            <div class="dompet"><img src = "assets/images/pedopay.png" alt = "Pedopay"><br></div>
+            <div class="dompet"><img src="assets/images/pedopay.png" alt="Pedopay"><br></div>
             RpX.xxx
           </div>
           <button><img src="assets/images/LogoTopUp.png" alt="Top Up"></button>
@@ -226,4 +248,5 @@
     </div>
   </div>
 </body>
+
 </html>

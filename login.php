@@ -1,3 +1,6 @@
+<?php
+session_start()
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,12 +75,12 @@
                 <form action="location.php" method="GET">
                     <div class="input-line">
                         <label>Username *</label>
-                        <input type="text" placeholder="Your username" required>
+                        <input type="text" name = $username placeholder="Your username" required >
                     </div>
                     
                     <div class="input-line">
                         <label>Password *</label>
-                        <input type="password" placeholder="••••••••" required>
+                        <input type="password" name = $password placeholder="••••••" required>
                     </div>
 
                     <button type="submit" class="btn-primary">Continue</button>

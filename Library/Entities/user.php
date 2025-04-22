@@ -16,7 +16,6 @@ class User {
         $this->setBalance($balance);
         $this->setSecurityPin($securityPin);
     }
-
     // Setters
     public function setUsername($username) {
         $this->username = $username;
@@ -47,7 +46,7 @@ class User {
         return $this->username;
     }
 
-    public function getPassword() {
+    private function getPassword() {
         return $this->password;
     }
 
