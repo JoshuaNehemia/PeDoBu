@@ -46,7 +46,7 @@ class User {
         return $this->username;
     }
 
-    private function getPassword() {
+    public function getPassword() {
         return $this->password;
     }
 

@@ -2,8 +2,8 @@
 require_once 'Library/Entities/User.php';
 use App\Entities\User;
 session_start();
-if (isset($_SESSION['User'])) {
-  $User = $_SESSION['User'];
+if (isset($_SESSION['user'])) {
+  $User = $_SESSION['user'];
 }
 else {
 }
