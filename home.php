@@ -167,7 +167,7 @@
     </div>
     <div class="middle-section">
       <button onclick="location.href='home.php'"><img src="assets/images/LogoHome.png" alt="Home"></button>
-      <button onclick="location.href='order.php'"><img src="assets/images/LogoMotor.png" alt="Order"></button>
+      <button onclick="location.href='order_debug.php'"><img src="assets/images/LogoMotor.png" alt="Order"></button>
       <button onclick="location.href='history.php'"><img src="assets/images/LogoHistory.png" alt="History"></button>
       <button onclick="location.href='profile.php'"><img src="assets/images/LogoProfile.png" alt="Profile"></button>
     </div>

@@ -105,14 +105,6 @@ session_start();
                     <div class="input-line">
                         <label>Phone Number *</label>
                         <div class="phone-input">
-                            <select name="locationCode">
-                                <?php
-                                include 'Assets/DBphp/repository.php';
-                                foreach ($locationCodes as $country => $locationCode) {
-                                    echo "<option value='{$locationCode}'>({$country}) {$locationCode} </option>";
-                                }
-                                ?>
-                            </select>
                             <input type="tel" placeholder="ex: 8123456789" name="phoneNumber" required>
                         </div>
                     </div>

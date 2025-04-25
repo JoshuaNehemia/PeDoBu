@@ -1,6 +1,7 @@
 <?php
 namespace App\Entities;
 
+
 class City {
     private $id;
     private $name;
