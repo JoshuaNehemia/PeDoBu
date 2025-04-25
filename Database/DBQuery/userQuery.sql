@@ -1,6 +1,9 @@
--- Sign Up
+-- Users
 
 -- Log In
+SELECT * FROM users where username = 'values';
 
--- Check Account Balance
+-- Sign Up
+INSERT INTO `pedobu`.`users` (`username`, `password`, `fullName`, `phoneNumber`, `balance`, `securityPin`) VALUES ('username', 'password', 'Full Name', '1234567890', '0', '000000');
 
+SELECT * FROM users;
