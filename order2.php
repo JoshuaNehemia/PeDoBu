@@ -5,17 +5,39 @@ if (session_status() == PHP_SESSION_NONE) {
 
 require_once 'Library/Entities/Location.php';
 require_once 'Library/DAO/LocationsDAO.php';
+require_once 'Library/DAO/DistanceDAO.php';
 
 use App\Database\LocationsDAO;
+use App\Database\DistanceDAO;
 use App\Entities\Location;
 
+// Check if user logged in
 if (!isset($_SESSION['user'])) {
     header("Location: login.php?err=404");
     exit;
 }
 
-$locations = LocationsDAO::Get_All_Locations();
+// Handle POST request
+if (isset($_POST['locationfrom']) && isset($_POST['to'])) {
+    $locationFromId = $_POST['locationfrom'];
+    $locationToId = $_POST['to'];
 
+    // Fetch location name from ID
+    $locationFrom = LocationsDAO::Get_Location_By_Id($locationFromId);
+    $locationTo = LocationsDAO::Get_Location_By_Id($locationToId);
+
+    // Calculate distance
+    $distance = DistanceDAO::Get_Distance_By_Id($locationFromId, $locationToId);
+    if ($distance == null) {
+        $distance = 0; // fallback
+    }
+    $price = (10000 + ($distance * 3000));
+
+} else {
+    // Redirect back if form not submitted properly
+    header("Location: order.php");
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -67,13 +89,13 @@ $locations = LocationsDAO::Get_All_Locations();
     }
     .main-container {
       margin-left: 80px;
-      width: calc(100% - 80px);
+      width: calc(100% - 60px);
       height: 100vh;
       display: flex;
     }
     .left-content {
-      width: 40%;
-      padding: 30px;
+      width: 35%;
+      padding: 20px;
     }
     .left-content h1 {
       font-size: 36px;
@@ -113,20 +135,6 @@ $locations = LocationsDAO::Get_All_Locations();
       border-bottom: 1px solid #ccc;
       font-size: 16px;
     }
-    .input-group select {
-      width: 100%;
-      padding: 10px;
-      margin: 5px 0 10px;
-      border: none;
-      border-bottom: 1px solid #ccc;
-      font-size: 16px;
-      background-color: transparent;
-      appearance: none; 
-      -webkit-appearance: none;
-      -moz-appearance: none;
-    }
-
-
     .info-row {
       display: flex;
       gap: 10px;
@@ -164,8 +172,9 @@ $locations = LocationsDAO::Get_All_Locations();
       cursor: pointer;
     }
     .right-map {
-      width: 60%;
+      width: 50%;
       height: 100vh;
+      display: flex;
     }
     iframe {
       width: 100%;
@@ -196,7 +205,7 @@ $locations = LocationsDAO::Get_All_Locations();
   <div class="main-container">
     <!-- Kiri -->
     <div class="left-content">
-      <h1>ORDER</h1>
+      <h1>CONFIRM</h1>
 
       <!-- Tab -->
       <div class="vehicle-tab">
@@ -205,27 +214,38 @@ $locations = LocationsDAO::Get_All_Locations();
       </div>
 
       <!-- Form -->
-      <form action="order2.php" method="post">
-        <div class="input-group">
-        <label for="locationfrom">Select departure :</label>
-        <select id="locationfrom" name="locationfrom" required>
-        <?php
-          foreach ($locations as $loc) {
-          echo '<option value="' . $loc->getId() . '">' . $loc->__toString() . '</option>';
-        }?>
-        </select>
+      <form method="post" action="orderdetail.php">
+      <div class="input-group">
+      <label>From:</label>
+      <label><?php echo htmlspecialchars($locationFrom->__toString()); ?></label>
+      <label>To:</label>
+      <label><?php echo htmlspecialchars($locationTo->__toString()); ?></label>
 
-        <label for="to">Select destination location:</label>
-        <select id="to" name="to" required>
-        <?php
-        foreach ($locations as $loc) {
-          echo '<option value="' . $loc->getId() . '">' . $loc->__toString() . '</option>';
-        }?>
-        </select>
-  </div>
-  <button class="order-button" type="submit">Check Location</button>
-</form>
+        <div class="info-row">
+          <div class="info-block">
+            <label for="payment">Payment</label>
+            <select name="payment" id="payment">
+              <option value="pedopay">Pedopay</option>
+              <option value="cash">Cash</option>
+            </select>
+          </div>
 
+          <div class="info-block">
+            <label for="discount">Discount</label>
+            <select name="discount" id="discount">
+              <option value="0">No Discount</option>
+              <option value="15">Diskon 15% for Motorcycle</option>
+            </select>
+          </div>
+
+          <div class="info-block">
+            <label>Total</label>
+            <div class="output"><?php echo htmlspecialchars($price);?></div>
+          </div>
+        </div>
+
+        <button class="order-button" type="submit">Order Now</button>
+      </form>
     </div>
 
     <!-- Kanan (Map) -->

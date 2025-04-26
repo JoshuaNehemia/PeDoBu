@@ -187,7 +187,7 @@
             <div class="dompet"><img src="assets/images/pedopay.png" alt="Pedopay"><br></div>
             RpX.xxx
           </div>
-          <button><img src="assets/images/LogoTopUp.png" alt="Top Up"></button>
+          <button onclick="location.href='topup.php'"><img src="assets/images/LogoTopUp.png" alt="Top Up"></button>
           <button><img src="assets/images/LogoTransfer.png" alt="Transfer"></button>
         </div>
       </div>
