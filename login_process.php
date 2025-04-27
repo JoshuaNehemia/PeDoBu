@@ -12,6 +12,7 @@ if (isset($_POST['username'], $_POST['password'])) {
     $res = UserDAO::Get_User_Login($_POST['username'],$_POST['password']);
     if ($res !=null) {
         $_SESSION['user'] = $res;
+        $_SESSION['username'] = $res->getUsername();
         header('Location: home.php');
     } else {
         header('Location: login.php?err=1');

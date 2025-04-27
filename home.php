@@ -1,3 +1,14 @@
+<?php
+require_once 'Library/Entities/User.php'; // Load dulu class User
+require_once 'Library/DAO/UserDAO.php';    // Kalau pakai DAO juga boleh sekalian
+
+session_start();
+if (!isset($_SESSION['username'])) {
+    header('Location: login.php');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -181,7 +192,7 @@
 
     <div class="header-section">
       <div class="greeting-container">
-        <h1>Hi Username!</h1>
+      <h1>Hi <?php echo $_SESSION['user']->getUsername(); ?>!</h1>
         <div class="saldo-container">
           <div>
             <div class="dompet"><img src="assets/images/pedopay.png" alt="Pedopay"><br></div>
