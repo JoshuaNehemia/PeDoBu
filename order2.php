@@ -1,84 +1,45 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
+require_once 'Library/Entities/Location.php';
+require_once 'Library/DAO/LocationsDAO.php';
+require_once 'Library/DAO/DistanceDAO.php';
 
-require_once __DIR__ . '/library/DAO/database.php';
-
-use App\Database\Database;
+use App\Database\LocationsDAO;
+use App\Database\DistanceDAO;
 use App\Entities\Location;
 
+// Check if user logged in
 if (!isset($_SESSION['user'])) {
     header("Location: login.php?err=404");
     exit;
 }
 
-// Dapatkan koneksi dari kelas Database
-$conn = Database::getConnection();
+// Handle POST request
+if (isset($_POST['locationfrom']) && isset($_POST['to'])) {
+    $locationFromId = $_POST['locationfrom'];
+    $locationToId = $_POST['to'];
 
-$sql = "SELECT locations.id, CONCAT(locations.name, ', ', streets.name, ', ', districts.name, ', ', city.name, ', ', province.name) AS full_location 
-        FROM locations 
-        JOIN streets ON locations.streets_id = streets.id 
-        JOIN districts ON streets.districts_id = districts.id 
-        JOIN city ON districts.city_id = city.id 
-        JOIN province ON city.province_id = province.id 
-        ORDER BY locations.name asc";
-$result = $conn->query($sql);
+    // Fetch location name from ID
+    $locationFrom = LocationsDAO::Get_Location_By_Id($locationFromId);
+    $locationTo = LocationsDAO::Get_Location_By_Id($locationToId);
 
-$options = "";
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        // Menggunakan id sebagai value
-        $options .= '<option value="' . htmlspecialchars($row["id"]) . '">' . htmlspecialchars($row["full_location"]) . '</option>';
+    // Calculate distance
+    $distance = DistanceDAO::Get_Distance_By_Id($locationFromId, $locationToId);
+    if ($distance == null) {
+        $distance = 0; // fallback
     }
+    $price = (10000 + ($distance * 3000));
+
 } else {
-    $options = '<option value="">No Location Available</option>';
+    // Redirect back if form not submitted properly
+    header("Location: order.php");
+    exit;
 }
-// inisiasi harga
-$totalPrice = "Rp0";
-$distance = 0;
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['from']) && isset($_POST['to'])) {
-  $from = $_POST['from'];
-  $to = $_POST['to'];
-  try{
-    $stmt = $conn->prepare("SELECT d.`distance` FROM distance d WHERE `from` = ? AND `destination` = ?");
-    $stmt->bind_param("ii", $from, $to);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    
-    if ($result && $row = $result->fetch_assoc()) {
-        $distance = $row["distance"];
-    }
-  
-  // Hitung jarak dan harga
-  $basePrice = 10000 + ($distance * 3000);
-  // Hitung diskon jika ada
-  $discount = isset($_POST['discount']) ? (int)$_POST['discount'] : 0;
-  $discountAmount = $basePrice * ($discount / 100);
-  $finalPrice = $basePrice - $discountAmount;
-  
-  $totalPrice = "Rp" . number_format($finalPrice, 0, ',', '.');
-  $_SESSION['order_data'] = [
-    'from' => $from,
-    'to' => $to,
-    'payment' => $_POST['payment'],
-    'discount' => $_POST['discount'],
-    'total' => $finalPrice,
-    'distance' => $distance];
-  }catch(Exception $e){
-    error_log("Error Calculating price");
-  }
-}
-if (isset($_POST['order'])) {
-  $_SESSION['pickup'] = $_SESSION['order_data']['from']; // atau langsung string kalau belum dari DB
-  $_SESSION['destination'] = $_SESSION['order_data']['to'];
-  header("Location: orderdetail.php");
-  exit();
-}
-
-// Jangan panggil $conn->close() di sini karena kelas Database akan menutup
-// koneksi secara otomatis di destructor!
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -128,13 +89,13 @@ if (isset($_POST['order'])) {
     }
     .main-container {
       margin-left: 80px;
-      width: calc(100% - 80px);
+      width: calc(100% - 60px);
       height: 100vh;
       display: flex;
     }
     .left-content {
-      width: 40%;
-      padding: 30px;
+      width: 35%;
+      padding: 20px;
     }
     .left-content h1 {
       font-size: 36px;
@@ -174,20 +135,6 @@ if (isset($_POST['order'])) {
       border-bottom: 1px solid #ccc;
       font-size: 16px;
     }
-    .input-group select {
-      width: 100%;
-      padding: 10px;
-      margin: 5px 0 10px;
-      border: none;
-      border-bottom: 1px solid #ccc;
-      font-size: 16px;
-      background-color: transparent;
-      appearance: none; 
-      -webkit-appearance: none;
-      -moz-appearance: none;
-    }
-
-
     .info-row {
       display: flex;
       gap: 10px;
@@ -225,8 +172,9 @@ if (isset($_POST['order'])) {
       cursor: pointer;
     }
     .right-map {
-      width: 60%;
+      width: 50%;
       height: 100vh;
+      display: flex;
     }
     iframe {
       width: 100%;
@@ -248,39 +196,31 @@ if (isset($_POST['order'])) {
       <button onclick="location.href='history.php'"><img src="assets/images/LogoHistory.png" alt="History"></button>
       <button onclick="location.href='profile.php'"><img src="assets/images/LogoProfile.png" alt="Profile"></button>
     </div>
-    <div class="bottom-section">
+    <div class ="bottom-section">
       <button onclick="location.href='logout.php'"><img src="assets/images/LogoLogOut.png" alt="Logout"></button>
     </div>
   </div>
 
   <!-- Main Content -->
   <div class="main-container">
-    <!-- Left (Form) -->
+    <!-- Kiri -->
     <div class="left-content">
-      <h1>ORDER</h1>
+      <h1>CONFIRM</h1>
+
       <!-- Tab -->
       <div class="vehicle-tab">
         <div class="active">Motorcycle</div>
         <div>Car</div>
       </div>
-      <!-- Form dengan combo box untuk lokasi -->
-      <form method="POST">
-        <div class="input-group">
-          <label for="from">From</label>
-          <select id="from" name="from" required>
-            <?php 
-              $selectedFrom = isset($_POST['from']) ? $_POST['from'] : '';
-              echo str_replace('value="' . $selectedFrom . '"', 'value="' . $selectedFrom . '" selected', $options);
-            ?>
-          </select>
-          <label for="to">To</label>
-          <select id="to" name="to" required>
-          <?php 
-            $selectedTo = isset($_POST['to']) ? $_POST['to'] : '';
-            echo str_replace('value="' . $selectedTo . '"', 'value="' . $selectedTo . '" selected', $options);
-          ?>
-        </select>
-        </div>
+
+      <!-- Form -->
+      <form method="post" action="orderdetail.php">
+      <div class="input-group">
+      <label>From:</label>
+      <label><?php echo htmlspecialchars($locationFrom->__toString()); ?></label>
+      <label>To:</label>
+      <label><?php echo htmlspecialchars($locationTo->__toString()); ?></label>
+
         <div class="info-row">
           <div class="info-block">
             <label for="payment">Payment</label>
@@ -289,6 +229,7 @@ if (isset($_POST['order'])) {
               <option value="cash">Cash</option>
             </select>
           </div>
+
           <div class="info-block">
             <label for="discount">Discount</label>
             <select name="discount" id="discount">
@@ -296,34 +237,27 @@ if (isset($_POST['order'])) {
               <option value="15">Diskon 15% for Motorcycle</option>
             </select>
           </div>
+
           <div class="info-block">
             <label>Total</label>
-            <div class="output"><?php echo $totalPrice; ?></div>
+            <div class="output"><?php echo htmlspecialchars($price);?></div>
           </div>
         </div>
-        <div style="display: flex; flex-direction: column; gap: 10px;">
-          <button class="order-button" type="submit" name="calculate">Check Price</button>
-            <?php if (isset($_SESSION['order_data'])) : ?>
-             <?php if ($_SESSION['order_data']['total'] != 10000): ?>
-              <button class="order-button" type="submit" name="order">Order</button>
-            <?php else: ?>
-              <label>Check your price first</label>
-            <?php endif; ?>
-          <?php endif; ?>
-        </div>
+
+        <button class="order-button" type="submit">Order Now</button>
       </form>
     </div>
-    <!-- Right (Map) -->
+
+    <!-- Kanan (Map) -->
     <div class="right-map">
       <?php
-      if (isset($_GET['from']) && isset($_GET['to'])) {
+        if (isset($_GET['from']) && isset($_GET['to'])) {
           $from = urlencode($_GET['from']);
           $to = urlencode($_GET['to']);
-          echo '<iframe src="https://www.google.com/maps/embed/v1/directions?key=YOUR_API_KEY&origin=' 
-                . $from . '&destination=' . $to . '&mode=driving" allowfullscreen></iframe>';
-      } else {
+          echo '<iframe src="https://www.google.com/maps/embed/v1/directions?key=YOUR_API_KEY&origin=' . $from . '&destination=' . $to . '&mode=driving" allowfullscreen></iframe>';
+        } else {
           echo '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.391171237742!2d112.782338!3d-7.311205!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fbd0b2d125ab%3A0xc8534b0a3b89a715!2sJl.%20Kedinding%20Lor%20II%20No%205%2C%20Surabaya!5e0!3m2!1sen!2sid!4v1712717740000!5m2!1sen!2sid" allowfullscreen></iframe>';
-      }
+        }
       ?>
     </div>
   </div>
