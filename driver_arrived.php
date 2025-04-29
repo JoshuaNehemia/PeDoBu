@@ -1,46 +1,6 @@
 <?php
 session_start();
 
-$pickup = $_SESSION['pickup'];
-$destination = $_SESSION['destination'];
-
-require_once __DIR__ . '/Library/DAO/LocationsDAO.php';
-require_once __DIR__ . '/Library/DAO/database.php';
-require_once __DIR__ . '/Library/Entities/Location.php';
-
-use App\Database\Database;
-use App\Database\LocationsDAO;
-use App\Entities\Location;
-
-//$from = LocationsDAO::Get_Location_By_Id($pickup);
-//$to = LocationsDAO::Get_Location_By_Id($destination);
-
-$conn = Database::getConnection();
-
-$sql = "SELECT locations.id, CONCAT(locations.name, ', ', streets.name, ', ', districts.name, ', ', city.name, ', ', province.name) AS full_location  
-        FROM locations
-        JOIN streets ON locations.streets_id = streets.id 
-        JOIN districts ON streets.districts_id = districts.id 
-        JOIN city ON districts.city_id = city.id 
-        JOIN province ON city.province_id = province.id 
-        where locations.id IN ($pickup, $destination)";
-$result = $conn->query($sql);
-$from = "Lokasi tidak ditemukan";
-$to = "Lokasi tidak ditemukan";
-
-if ($result) {
-  while ($row = $result->fetch_assoc()) {
-      if ($row['id'] == $pickup) {
-          $from = $row['full_location'];
-      } elseif ($row['id'] == $destination) {
-          $to = $row['full_location'];
-      }
-  }
-}
-
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -152,15 +112,18 @@ if ($result) {
     .location-box p {
       margin: 10px 0;
     }
-    .print-button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      border: 2px solid green;
-      background-color: white;
-      border-radius: 10px;
-      font-weight: bold;
-      cursor: pointer;
-      color: green;
+    .arrived-button {
+    flex: 1;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    background-color: #000000;
+    color: white;
+
+
     }
   </style>
 </head>
@@ -171,10 +134,9 @@ if ($result) {
       <img src="assets/images/LogoPedoBu.png" alt="Logo">
     </div>
     <div class="middle-section">
-      <button onclick="location.href='home.php'"><img src="assets/images/homeRedup.png" alt="Home"></button>
-      <button onclick="location.href='order.php'"><img src="assets/images/LogoMotor.png" alt="Order"></button>
-      <button onclick="location.href='history.php'"><img src="assets/images/LogoHistory.png" alt="History"></button>
-      <button onclick="location.href='profile.php'"><img src="assets/images/LogoProfile.png" alt="Profile"></button>
+      <button onclick="location.href='driver_arrived.php'"><img src="assets/images/LogoMotor.png" alt="Order"></button>
+      <button onclick="location.href='driver_history.php'"><img src="assets/images/LogoHistory.png" alt="History"></button>
+      <button onclick="location.href='driver_profile.php'"><img src="assets/images/LogoProfile.png" alt="Profile"></button>
     </div>
     <div class="bottom-section">
       <button onclick="location.href='driverLogin.php'"><img src="assets/images/LogoLogOut.png" alt="Logout"></button>
@@ -190,7 +152,7 @@ if ($result) {
 
       <div class="driver-card">
   <div class="driver-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-    <strong>DRIVER</strong>
+    <strong>CUSTOMER</strong>
     <div style="display: flex; align-items: center; gap: 10px;">
       <a href="#" style="color: red; font-size: 14px;">Report</a>
       <img src="assets/images/logochat.png" alt="Chat" style="width: 40px; height: 40px;">
@@ -198,10 +160,9 @@ if ($result) {
     </div>
   </div>
   <div class="driver-info">
-    <img src="assets/images/drivergojek.jpg" alt="Driver">
+    <img src="Assets/images/profileMenyala.png" alt="Driver">
     <div>
       <strong>Ratna</strong><br>
-      DD 1234 ABC<br>
       ⭐ 5/5
     </div>
   </div>
@@ -210,10 +171,10 @@ if ($result) {
 
       <h1>Your order</h1>
       <div class="location-box">
-        <p><strong>🧭 Pickup:</strong><br><?php echo htmlspecialchars($from); ?></p>
+        <p><strong>🧭 Pickup:</strong><br>dari mana</p>
         <hr>
-        <p><strong>📍 Destination:</strong><br><?php echo htmlspecialchars($to); ?></p>
-        <button class="print-button">Print Order</button>
+        <p><strong>📍 Destination:</strong><br>kemana</p>
+        <button class="arrived-button" onclick="location.href='driver_dashboard.php'">Arrived</button>
       </div>
     </div>
 
