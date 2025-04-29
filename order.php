@@ -1,9 +1,11 @@
 <?php
 session_start();
 
+
 require_once __DIR__ . '/library/DAO/database.php';
 
 use App\Database\Database;
+use App\Entities\Location;
 
 // Dapatkan koneksi dari kelas Database
 $conn = Database::getConnection();
@@ -14,7 +16,7 @@ $sql = "SELECT locations.id, CONCAT(locations.name, ', ', streets.name, ', ', di
         JOIN districts ON streets.districts_id = districts.id 
         JOIN city ON districts.city_id = city.id 
         JOIN province ON city.province_id = province.id 
-        ORDER BY province.name, city.name, districts.name, streets.name, locations.name";
+        ORDER BY locations.name asc";
 $result = $conn->query($sql);
 
 $options = "";
@@ -25,6 +27,48 @@ if ($result->num_rows > 0) {
     }
 } else {
     $options = '<option value="">No Location Available</option>';
+}
+// inisiasi harga
+$totalPrice = "Rp0";
+$distance = 0;
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['from']) && isset($_POST['to'])) {
+  $from = $_POST['from'];
+  $to = $_POST['to'];
+  try{
+    $stmt = $conn->prepare("SELECT d.`distance` FROM distance d WHERE `from` = ? AND `destination` = ?");
+    $stmt->bind_param("ii", $from, $to);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    if ($result && $row = $result->fetch_assoc()) {
+        $distance = $row["distance"];
+    }
+  
+  // Hitung jarak dan harga
+  $basePrice = 10000 + ($distance * 3000);
+  // Hitung diskon jika ada
+  $discount = isset($_POST['discount']) ? (int)$_POST['discount'] : 0;
+  $discountAmount = $basePrice * ($discount / 100);
+  $finalPrice = $basePrice - $discountAmount;
+  
+  $totalPrice = "Rp" . number_format($finalPrice, 0, ',', '.');
+  $_SESSION['order_data'] = [
+    'from' => $from,
+    'to' => $to,
+    'payment' => $_POST['payment'],
+    'discount' => $_POST['discount'],
+    'total' => $finalPrice,
+    'distance' => $distance];
+  }catch(Exception $e){
+    error_log("Error Calculating price");
+  }
+}
+if (isset($_POST['order'])) {
+  $_SESSION['pickup'] = $_SESSION['order_data']['from']; // atau langsung string kalau belum dari DB
+  $_SESSION['destination'] = $_SESSION['order_data']['to'];
+  header("Location: orderdetail.php");
+  exit();
 }
 
 // Jangan panggil $conn->close() di sini karena kelas Database akan menutup
@@ -43,6 +87,7 @@ if ($result->num_rows > 0) {
     .sidebar { width: 80px; background-color: #F8F8F8; display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 20px 0; border-right: 2px solid #4CAF50; position: fixed; height: 100vh; left: 0; top: 0; z-index: 1000; }
     .sidebar .top-section, .sidebar .middle-section, .sidebar .bottom-section { display: flex; flex-direction: column; align-items: center; }
     .sidebar button { background: none; border: none; margin: 10px 0; cursor: pointer; }
+    .order-button {background-color: black;color: white;border: none;border-radius: 10px;font-size: 16px;cursor: pointer;text-align: center;text-decoration: none;}
     .sidebar img { width: 40px; height: 40px; }
     .main-container { margin-left: 80px; width: calc(100% - 80px); height: 100vh; display: flex; }
     .left-content { width: 40%; padding: 30px; }
@@ -91,16 +136,22 @@ if ($result->num_rows > 0) {
         <div>Car</div>
       </div>
       <!-- Form dengan combo box untuk lokasi -->
-      <form method="GET">
+      <form method="POST">
         <div class="input-group">
           <label for="from">From</label>
           <select id="from" name="from" required>
-            <?php echo $options; ?>
+            <?php 
+              $selectedFrom = isset($_POST['from']) ? $_POST['from'] : '';
+              echo str_replace('value="' . $selectedFrom . '"', 'value="' . $selectedFrom . '" selected', $options);
+            ?>
           </select>
           <label for="to">To</label>
           <select id="to" name="to" required>
-            <?php echo $options; ?>
-          </select>
+          <?php 
+            $selectedTo = isset($_POST['to']) ? $_POST['to'] : '';
+            echo str_replace('value="' . $selectedTo . '"', 'value="' . $selectedTo . '" selected', $options);
+          ?>
+        </select>
         </div>
         <div class="info-row">
           <div class="info-block">
@@ -119,10 +170,19 @@ if ($result->num_rows > 0) {
           </div>
           <div class="info-block">
             <label>Total</label>
-            <div class="output">Rpxx.xxx</div>
+            <div class="output"><?php echo $totalPrice; ?></div>
           </div>
         </div>
-        <button class="order-button" type="submit">Order Now</button>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <button class="order-button" type="submit" name="calculate">Check Price</button>
+            <?php if (isset($_SESSION['order_data'])) : ?>
+             <?php if ($_SESSION['order_data']['total'] != 10000): ?>
+              <button class="order-button" type="submit" name="order">Order</button>
+            <?php else: ?>
+              <label>Check your price first</label>
+            <?php endif; ?>
+          <?php endif; ?>
+        </div>
       </form>
     </div>
     <!-- Right (Map) -->

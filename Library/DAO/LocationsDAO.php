@@ -13,7 +13,6 @@ class LocationsDAO
 {
     public static function Get_Location_By_Name($name)
     {
-
         $connection = new Database();
         $conn = $connection->getConnection();
 
