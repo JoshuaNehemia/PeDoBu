@@ -1,3 +1,47 @@
+<?php
+session_start();
+
+$pickup = $_SESSION['pickup'];
+$destination = $_SESSION['destination'];
+
+require_once __DIR__ . '/Library/DAO/LocationsDAO.php';
+require_once __DIR__ . '/Library/DAO/database.php';
+require_once __DIR__ . '/Library/Entities/Location.php';
+
+use App\Database\Database;
+use App\Database\LocationsDAO;
+use App\Entities\Location;
+
+//$from = LocationsDAO::Get_Location_By_Id($pickup);
+//$to = LocationsDAO::Get_Location_By_Id($destination);
+
+$conn = Database::getConnection();
+
+$sql = "SELECT locations.id, CONCAT(locations.name, ', ', streets.name, ', ', districts.name, ', ', city.name, ', ', province.name) AS full_location  
+        FROM locations
+        JOIN streets ON locations.streets_id = streets.id 
+        JOIN districts ON streets.districts_id = districts.id 
+        JOIN city ON districts.city_id = city.id 
+        JOIN province ON city.province_id = province.id 
+        where locations.id IN ($pickup, $destination)";
+$result = $conn->query($sql);
+$from = "Lokasi tidak ditemukan";
+$to = "Lokasi tidak ditemukan";
+
+if ($result) {
+  while ($row = $result->fetch_assoc()) {
+      if ($row['id'] == $pickup) {
+          $from = $row['full_location'];
+      } elseif ($row['id'] == $destination) {
+          $to = $row['full_location'];
+      }
+  }
+}
+
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +58,16 @@
       font-family: 'DM Sans', sans-serif;
       display: flex;
       overflow-x: hidden;
+    }
+    H1 {
+      color: #006400;
+    }
+    span{
+      background: #ddd; 
+      padding: 8px 10px; 
+      border-radius: 30px; 
+      font-size: 15px; 
+      margin-left: 5px;
     }
     .sidebar {
       width: 80px;
@@ -123,7 +177,7 @@
       <button onclick="location.href='profile.php'"><img src="assets/images/LogoProfile.png" alt="Profile"></button>
     </div>
     <div class="bottom-section">
-      <button onclick="location.href='logout.php'"><img src="assets/images/LogoLogOut.png" alt="Logout"></button>
+      <button onclick="location.href='index.php'"><img src="assets/images/LogoLogOut.png" alt="Logout"></button>
     </div>
   </div>
 
@@ -131,9 +185,8 @@
   <div class="main-content">
     <!-- Left Panel -->
     <div class="left-content">
-      <h1 style="color:#006400;">ORDER</h1>
-      <span style="font-weight: bold;">Kedinding Lor → Warkop</span>
-      <span style="background: #ddd; padding: 5px 10px; border-radius: 20px; font-size: 12px; margin-left: 10px;">Motorcycle</span>
+      <h1>ORDER</h1>
+      <span>Motorcycle</span>
 
       <div class="driver-card">
   <div class="driver-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
@@ -157,9 +210,9 @@
 
       <h1>Your order</h1>
       <div class="location-box">
-        <p><strong>🧭 Pickup:</strong><br>Jl. Kedinding lor ii no 5, Surabaya</p>
+        <p><strong>🧭 Pickup:</strong><br><?php echo htmlspecialchars($from); ?></p>
         <hr>
-        <p><strong>📍 Destination:</strong><br>Warkop Indonesia, Jl. Kedung Cowek v, Surabaya</p>
+        <p><strong>📍 Destination:</strong><br><?php echo htmlspecialchars($to); ?></p>
         <button class="print-button">Print Order</button>
       </div>
     </div>

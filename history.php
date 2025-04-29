@@ -172,7 +172,7 @@
       <button onclick="location.href='profile.php'"><img src="assets/images/LogoProfile.png" alt="Profile"></button>
     </div>
     <div class="bottom-section">
-      <button onclick="location.href='logout.php'"><img src="assets/images/LogoLogOut.png" alt="Logout"></button>
+      <button onclick="location.href='index.php'"><img src="assets/images/LogoLogOut.png" alt="Logout"></button>
     </div>
   </div>
 
@@ -214,7 +214,7 @@
       <div class="right-section">
       <div class="buttons">
         <div class="price">Rp.xx.xxx</div>
-        <button onclick="location.href='orderagain.php'">Order again</button>
+        <button onclick="location.href='order.php'">Order again</button>
         <button onclick="location.href='checkorder.php'">Check Order</button>
       </div>
     </div>
