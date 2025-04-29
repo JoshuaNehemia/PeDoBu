@@ -1,0 +1,40 @@
+██████╗ ███████╗██████╗  █████╗ ██████╗ ██╗  ██╗
+██╔══██╗██╔════╝██╔══██╗██╔══██╗██╔══██╗██║  ██║
+██████╔╝█████╗  ██║  ██║██║  ██║███████║██║  ██║
+██╔═══╝ ██╔══╝  ██║  ██║██║  ██║██╔══██║██║  ██║
+██║     ███████╗██████╔╝ █████╔╝██████╔╝ █████╔╝
+╚═╝     ╚══════╝╚═════╝  ╚════╝ ╚═════╝  ╚════╝
+
+PeDoBu - Personal Driver Buddy
+Your Personal Driver, Anytime, Anywhere
+
+------------------------------------------------------------
+
+Invoice Number    : 3
+
+Passenger Name    : Pencinta Ojek Online
+Driver Name       : bakso
+Vehicle Plate No. : L 1  BAKSO
+
+------------------------------------------------------------
+
+Pickup Location   : Perumahan Tenggilis Mejoyo Blok A, Jalan Tenggilis Mejoyo, 3, Tenggilis Mejoyo, Surabaya, Jawa Timur
+Drop-off Location : PT. Maspion, Jalan Rungkut Industri, 207, Tenggilis Mejoyo, Surabaya, Jawa Timur
+Trip Distance     : 2.7 km
+Ride Date/Time    : 2025_04_30_01_40_56
+
+------------------------------------------------------------
+
+Fare Summary
+
+Description         | Amount
+--------------------|--------------
+Charge              | Rp 18100
+--------------------|--------------
+Total Cost          | Rp 18100
+
+Payment Status      : Paid
+------------------------------------------------------------
+
+Thank you for riding with PeDoBu!
+For support, contact us at support@pedobu.com

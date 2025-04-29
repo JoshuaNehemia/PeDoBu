@@ -225,7 +225,7 @@ header("Refresh: 15");
       <button onclick="location.href='profile.php'"><img src="assets/images/LogoProfile.png" alt="Profile"></button>
     </div>
     <div class="bottom-section">
-      <button onclick="location.href='index.php'"><img src="assets/images/LogoLogOut.png" alt="Logout"></button>
+      <button onclick="location.href='driverLogin.php'"><img src="assets/images/LogoLogOut.png" alt="Logout"></button>
     </div>
   </div>
 
@@ -282,10 +282,11 @@ header("Refresh: 15");
         <p><strong>🧭 Pickup:</strong><br><?php echo htmlspecialchars($fromDisplay); ?></p>
         <hr>
         <p><strong>📍 Destination:</strong><br><?php echo htmlspecialchars($destinationDisplay); ?></p>
-        <?php 
-        if($driver->getUsername()!==1)
-        {
-          echo "<br><a href=\"Invoice/invoice.php?order_id={$idInvoice}\" class=\"print-button\">Print Order</a>";
+        <?php
+        if (isset($driver)) {
+          if ($driver->getUsername() !== 1) {
+            echo "<br><a href=\"Invoice/invoice.php?order_id={$idInvoice}\" class=\"print-button\">Print Order</a>";
+          }
         }
         ?>
       </div>
