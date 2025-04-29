@@ -159,15 +159,18 @@
     }
   </style>
 </head>
-
 <body>
+<?php
+session_start(); // Mulai sesi
+$username = $_SESSION['user']['username'] ?? "Guest"; 
+?>
   <div class="sidebar">
     <div class="top-section">
       <img src="assets/images/LogoPedoBu.png" alt="Logo PedoBu">
     </div>
     <div class="middle-section">
       <button onclick="location.href='home.php'"><img src="assets/images/LogoHome.png" alt="Home"></button>
-      <button onclick="location.href='order_debug.php'"><img src="assets/images/LogoMotor.png" alt="Order"></button>
+      <button onclick="location.href='order.php'"><img src="assets/images/LogoMotor.png" alt="Order"></button>
       <button onclick="location.href='history.php'"><img src="assets/images/LogoHistory.png" alt="History"></button>
       <button onclick="location.href='profile.php'"><img src="assets/images/LogoProfile.png" alt="Profile"></button>
     </div>
@@ -181,8 +184,8 @@
 
     <div class="header-section">
       <div class="greeting-container">
-        <h1>Hi Username!</h1>
-        <div class="saldo-container">
+      <h1>Hi <?php echo htmlspecialchars($username); ?>!</h1>
+      <div class="saldo-container">
           <div>
             <div class="dompet"><img src="assets/images/pedopay.png" alt="Pedopay"><br></div>
             RpX.xxx
