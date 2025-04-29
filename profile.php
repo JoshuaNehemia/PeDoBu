@@ -143,7 +143,7 @@ if (isset($_SESSION['user']) && is_array($_SESSION['user'])) {
       <button onclick="location.href='profile.php'"><img src="assets/images/profileMenyala.png" alt="Profile"></button>
     </div>
     <div class="bottom-section">
-      <button onclick="location.href='logout.php'"><img src="assets/images/LogoLogOut.png" alt="Logout"></button>
+      <button onclick="location.href='index.php'"><img src="assets/images/LogoLogOut.png" alt="Logout"></button>
     </div>
   </div>
   <div class="content">
@@ -166,7 +166,7 @@ if (isset($_SESSION['user']) && is_array($_SESSION['user'])) {
       </div>
     </div>
     <div class="right-menu">
-      <a class="menu-item" href="order.php">
+      <a class="menu-item" href="history.php">
         <img src="assets/images/icon_order.png" alt="Order Icon"> Order <span style="margin-left:auto;">></span>
       </a>
       <a class="menu-item" href="home.php">
@@ -175,7 +175,7 @@ if (isset($_SESSION['user']) && is_array($_SESSION['user'])) {
       <a class="menu-item" href="home.php">
         <img src="assets/images/icon_payment.png" alt="Payment Icon"> Payment Method <span style="margin-left:auto;">></span>
       </a>
-      <a class="menu-item" href="driverRegis.php">
+      <a class="menu-item">
         <img src="assets/images/icon_driver.png" alt="Driver Icon"> Driver Partner <span style="margin-left:auto;">></span>
       </a>
       <a class="menu-item" href="home.php">
@@ -184,7 +184,7 @@ if (isset($_SESSION['user']) && is_array($_SESSION['user'])) {
       <a class="menu-item" href="home.php">
         <img src="assets/images/icon_language.png" alt="Language Icon"> Language <span style="margin-left:auto;">></span>
       </a>
-      <a class="menu-item" href="home.php">
+      <a class="menu-item" href="index.php">
         <img src="assets/images/icon_logout.png" alt="Logout Icon"> Log Out Account <span style="margin-left:auto;">></span>
       </a>
     </div>

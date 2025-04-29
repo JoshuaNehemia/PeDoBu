@@ -13,7 +13,6 @@ class LocationsDAO
 {
     public static function Get_Location_By_Name($name)
     {
-
         $connection = new Database();
         $conn = $connection->getConnection();
 
@@ -97,4 +96,46 @@ WHERE l.`name` like '%" . $name . "%';");
             return null;
         }
     }
+    public static function Get_All_Locations()
+    {
+        $connection = new Database();
+        $conn = $connection->getConnection();
+
+        $sql = "SELECT 
+            l.id, 
+            l.`name`, 
+            l.numbers, 
+            s.name as 'street', 
+            d.name as 'district', 
+            c.name as 'city', 
+            p.name as 'province'
+        FROM locations l
+        INNER JOIN streets s ON s.id = l.streets_id
+        INNER JOIN districts d ON d.id = s.districts_id
+        INNER JOIN city c ON c.id = d.city_id
+        INNER JOIN province p ON p.id = c.province_id";
+
+        $result = $conn->query($sql);
+
+        if (!$result) {
+            // Kalau query gagal, langsung kasih tau error
+            die('Query Error in Get_All_Locations: ' . $conn->error);
+        }
+
+        $locations = [];
+        while ($row = $result->fetch_assoc()) {
+            $locations[] = new Location(
+                $row['id'],
+                $row['name'],
+                $row['numbers'],
+                $row['street'],
+                $row['district'],
+                $row['city'],
+                $row['province']
+            );
+        }
+
+        return $locations;
+    }
+    
 }    
