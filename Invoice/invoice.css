@@ -1,0 +1,33 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 30px;
+    max-width: 600px;
+    margin: auto;
+    background-color: white;
+  }
+  h1 {
+    text-align: center;
+  }
+  pre, table {
+    font-family: inherit;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  th, td {
+    padding: 10px;
+    text-align: left;
+  }
+  th {
+    border-bottom: 2px solid #000;
+  }
+  tr.total-row td {
+    font-weight: bold;
+    border-top: 2px solid #000;
+  }
