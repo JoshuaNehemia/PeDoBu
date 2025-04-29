@@ -65,4 +65,10 @@ INSERT INTO locations (`id`, `name`, `numbers`, `streets_id`) VALUES
 ('22', 'Universitas Surabaya (UBAYA)', '144', '19');
 
 
-SELECT * FROM locations;
+SELECT l.id, l.`name`, l.numbers, s.name as 'street', d.name as 'district', c.name as 'city', p.name as 'province'
+FROM locations l
+INNER JOIN streets s on s.id = l.streets_id
+INNER JOIN districts d on d.id = s.districts_id
+INNER JOIN city c on c.id = d.city_id
+INNER Join province p on p.id = c.province_id
+WHERE l.`name` like '%tunjungan%';

@@ -10,19 +10,18 @@ Your Personal Driver, Anytime, Anywhere
 
 ------------------------------------------------------------
 
-Invoice Number    : 001_002_003
-Date              : 2025-04-29 09:27:12
+Invoice Number    : 2
 
-Passenger Name    : Passengers
-Driver Name       : Drivers
-Vehicle Plate No. : P 1 BERAK
+Passenger Name    : Capek ISA
+Driver Name       : bakso
+Vehicle Plate No. : L 1  BAKSO
 
 ------------------------------------------------------------
 
-Pickup Location   : KENTUT
-Drop-off Location : BERAK
-Trip Distance     : 50 km
-Ride Date/Time    : 2025-05-02 17:15:12
+Pickup Location   : Kebun Binatang Surabaya, Jalan Raya Darmo, 1, Tegalsari, Surabaya, Jawa Timur
+Drop-off Location : Kantor Pos Rungkut, Jalan Raya Tenggilis Timur, 16, Tenggilis Mejoyo, Surabaya, Jawa Timur
+Trip Distance     : 4.1 km
+Ride Date/Time    : 2025_04_29_16_43_24
 
 ------------------------------------------------------------
 
@@ -30,11 +29,9 @@ Fare Summary
 
 Description         | Amount
 --------------------|--------------
-Charge              | Rp 150000
-Booking Fee         | Rp 15000
-Tax Fee             | Rp 16500
+Charge              | Rp 22300
 --------------------|--------------
-Total Cost          | Rp 181500
+Total Cost          | Rp 22300
 
 Payment Status      : Paid
 ------------------------------------------------------------

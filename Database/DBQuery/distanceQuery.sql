@@ -430,4 +430,4 @@ INNER JOIN locations loc on d.`destination` = loc.id;
 
 SELECT d.`distance`
 FROM distance d
-WHERE `from` = 'values' and `destination` = 'values';
+WHERE `from` = '1' and `destination` = '2';

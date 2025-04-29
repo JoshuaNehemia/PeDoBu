@@ -66,12 +66,12 @@ class CreateInvoice
             if ($file) {
                 fwrite($file, $this->content);
                 fclose($file);
-                echo "<br>Invoice created: {$filename}";
+                echo "<br><br>Invoice created: <br>{$filename}";
             } else {
-                echo "<br>Unable to create file at: {$filename}";
+                echo "<br><br>Unable to create file at: <br>{$filename}";
             }
         } else {
-            echo "<br>Invoice file already exists: {$filename}";
+            echo "<br><br>Invoice file already exists: <br>{$filename}";
         }
     }
 

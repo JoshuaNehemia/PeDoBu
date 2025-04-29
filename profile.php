@@ -161,7 +161,7 @@ if (isset($_SESSION['user']) && is_array($_SESSION['user'])) {
           </div>
           <?php echo 'Rp' . htmlspecialchars($user['balance']); ?>
         </div>
-        <button><img src="assets/images/LogoTopUp.png" alt="Top Up"></button>
+        <button><a href="topupmethod.php"><img src="assets/images/LogoTopUp.png" alt="Top Up"></a></button>
         <button><img src="assets/images/LogoTransfer.png" alt="Transfer"></button>
       </div>
     </div>

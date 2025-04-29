@@ -13,8 +13,7 @@ class LocationsDAO
 {
     public static function Get_Location_By_Name($name)
     {
-        $connection = new Database();
-        $conn = $connection->getConnection();
+        $conn = Database::getConnection();
 
         $stmt = $conn->prepare("SELECT l.id, l.`name`, l.numbers, s.name as 'street', d.name as 'district', c.name as 'city', p.name as 'province'
 FROM locations l
@@ -50,9 +49,8 @@ WHERE l.`name` like '%" . $name . "%';");
 
     public static function Get_Location_By_Id($id)
     {
-        $connection = new Database();
-        $conn = $connection->getConnection();
-    
+        $conn = Database::getConnection();
+
         // Using a prepared statement to avoid SQL injection
         $stmt = $conn->prepare("
             SELECT 
@@ -69,17 +67,17 @@ WHERE l.`name` like '%" . $name . "%';");
             INNER JOIN city c ON c.id = d.city_id
             INNER JOIN province p ON p.id = c.province_id
             WHERE l.`id` = ?;");
-    
+
         // Bind the parameter (the ID) to the prepared statement
         $stmt->bind_param("i", $id); // "i" denotes that the parameter is an integer
-    
+
         $stmt->execute();
         $result = $stmt->get_result();
-    
+
         if ($result && $result->num_rows > 0) {
             error_log("Location data retrieved successfully.");
             $row = $result->fetch_assoc();
-    
+
             // Create and return a Location object
             $location = new Location(
                 $row['id'],
@@ -98,8 +96,7 @@ WHERE l.`name` like '%" . $name . "%';");
     }
     public static function Get_All_Locations()
     {
-        $connection = new Database();
-        $conn = $connection->getConnection();
+        $conn = Database::getConnection();
 
         $sql = "SELECT 
             l.id, 
@@ -137,5 +134,5 @@ WHERE l.`name` like '%" . $name . "%';");
 
         return $locations;
     }
-    
-}    
+
+}

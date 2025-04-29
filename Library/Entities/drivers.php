@@ -7,6 +7,7 @@ use App\Security\Security;
 
 class Driver {
     private string $username;
+    private string $fullname;
     private string $email;
     private string $password;
     private float $phoneNumber;
@@ -17,6 +18,7 @@ class Driver {
 
     public function __construct(
         string $username,
+        string $fullname,
         string $email,
         string $password,
         float $phoneNumber,
@@ -26,6 +28,7 @@ class Driver {
         string $driverType
     ) {
         $this->setUsername($username);
+        $this->setFullName($fullname);
         $this->setEmail($email);
         // Di registrasi awal, password dan idNumber diterima dalam bentuk plaintext.
         // Nantinya pada DAO, kedua field ini akan dienkripsi.
@@ -46,6 +49,7 @@ class Driver {
 
     // Setters
     public function setUsername(string $username): void { $this->username = $username; }
+    public function setFullName(string $fullname): void { $this->fullname = $fullname; }
     public function setEmail(string $email): void { $this->email = $email; }
     public function setPassword(string $password): void { $this->password = $password; }
     public function setPhoneNumber(float $phoneNumber): void { $this->phoneNumber = $phoneNumber; }
@@ -56,6 +60,7 @@ class Driver {
 
     // Getters
     public function getUsername(): string { return $this->username; }
+    public function getFullName(): string { return $this->fullname; }
     public function getEmail(): string { return $this->email; }
     public function getPassword(): string { return $this->password; }
     public function getPhoneNumber(): float { return $this->phoneNumber; }

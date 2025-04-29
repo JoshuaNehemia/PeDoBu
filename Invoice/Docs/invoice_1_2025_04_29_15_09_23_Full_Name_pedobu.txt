@@ -1,0 +1,40 @@
+██████╗ ███████╗██████╗  █████╗ ██████╗ ██╗  ██╗
+██╔══██╗██╔════╝██╔══██╗██╔══██╗██╔══██╗██║  ██║
+██████╔╝█████╗  ██║  ██║██║  ██║███████║██║  ██║
+██╔═══╝ ██╔══╝  ██║  ██║██║  ██║██╔══██║██║  ██║
+██║     ███████╗██████╔╝ █████╔╝██████╔╝ █████╔╝
+╚═╝     ╚══════╝╚═════╝  ╚════╝ ╚═════╝  ╚════╝
+
+PeDoBu - Personal Driver Buddy
+Your Personal Driver, Anytime, Anywhere
+
+------------------------------------------------------------
+
+Invoice Number    : 1
+
+Passenger Name    : Full Name
+Driver Name       : bakso
+Vehicle Plate No. : L 1  BAKSO
+
+------------------------------------------------------------
+
+Pickup Location   : Universitas Surabaya (UBAYA), Jalan Kali Rungkut, 144, Tenggilis Mejoyo, Surabaya, Jawa Timur
+Drop-off Location : Galaxy Mall 3, Jalan Raya Merr (Ir. H. Soekarno), 225, Tenggilis Mejoyo, Surabaya, Jawa Timur
+Trip Distance     : 1.2 km
+Ride Date/Time    : 2025_04_29_15_09_23
+
+------------------------------------------------------------
+
+Fare Summary
+
+Description         | Amount
+--------------------|--------------
+Charge              | Rp 12000
+--------------------|--------------
+Total Cost          | Rp 12000
+
+Payment Status      : Paid
+------------------------------------------------------------
+
+Thank you for riding with PeDoBu!
+For support, contact us at support@pedobu.com

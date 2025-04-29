@@ -12,8 +12,7 @@ class DistanceDAO
     public static function Get_Distance_By_Id($from,$destination)
     {
 
-        $connection = new Database();
-        $conn = $connection->getConnection();
+        $conn = Database::getConnection();
 
         $stmt = $conn->prepare("SELECT d.`distance`
 FROM distance d
