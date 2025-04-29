@@ -162,49 +162,49 @@
       <div class="left-panel">
         <div class="payment-methods">
           <div class="method">
-            <a href="TopUpAlfamart.php">
+          <a href="TopUpProcess.php?method=Alfamart">
               <img src="assets/images/LogoAlfamart.png" alt="Alfamart">
               Alfamart
             </a>
           </div>
           <div class="method">
-            <a href="TopUpIndomaret.php">
+          <a href="TopUpProcess.php?method=Indomaret">
               <img src="assets/images/LogoIndomaret.png" alt="Indomaret">
               Indomaret
             </a>
           </div>
           <div class="method">
-            <a href="TopUpDana.php">
+          <a href="TopUpProcess.php?method=Dana">
               <img src="assets/images/LogoDana.png" alt="Dana">
               Dana
             </a>
           </div>
           <div class="method">
-            <a href="TopUpPaypal.php">
+          <a href="TopUpProcess.php?method=Paypal">
               <img src="assets/images/LogoPaypal.png" alt="Paypal">
               Paypal
             </a>
           </div>
           <div class="method">
-            <a href="TopUpBCA.php">
+            <a href="TopUpProcess.php?method=BCA">
               <img src="assets/images/LogoBCA.png" alt="BCA">
               BCA
             </a>
           </div>
           <div class="method">
-            <a href="TopUpBNI.php">
+          <a href="TopUpProcess.php?method=BNI">
               <img src="assets/images/LogoBNI.png" alt="BNI">
               BNI
             </a>
           </div>
           <div class="method">
-            <a href="TopUpMandiri.php">
+          <a href="TopUpProcess.php?method=Mandiri">
               <img src="assets/images/LogoMandiri.png" alt="Mandiri">
               Mandiri
             </a>
           </div>
           <div class="method">
-            <a href="TopUpMega.php">
+          <a href="TopUpProcess.php?method=Mega">
               <img src="assets/images/LogoMega.png" alt="Mega">
               Mega
             </a>

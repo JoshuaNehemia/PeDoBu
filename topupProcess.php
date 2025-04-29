@@ -1,5 +1,13 @@
+<?php
+session_start();
+if (isset($_GET['method'])) {
+  $method = $_GET['method'];
+}
+?>
+
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,12 +16,14 @@
     * {
       box-sizing: border-box;
     }
+
     body {
       margin: 0;
       font-family: 'DM Sans', sans-serif;
       display: flex;
       overflow-x: hidden;
     }
+
     .sidebar {
       width: 80px;
       background-color: #F8F8F8;
@@ -29,6 +39,7 @@
       left: 0;
       z-index: 1000;
     }
+
     .sidebar .top-section,
     .sidebar .middle-section,
     .sidebar .bottom-section {
@@ -36,12 +47,14 @@
       flex-direction: column;
       align-items: center;
     }
+
     .sidebar button {
       background: none;
       border: none;
       margin: 10px 0;
       cursor: pointer;
     }
+
     .sidebar img {
       width: 40px;
       height: 40px;
@@ -85,7 +98,7 @@
       background-color: #f2f2f2;
       padding: 40px;
       border-radius: 20px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
       width: 600px;
     }
 
@@ -134,57 +147,80 @@
     }
 
     .right-panel {
-        display: flex;
-  align-items: center;
-  justify-content: right;
-  margin-top: -115px;
-  margin-left: 50px;
-}
+      display: flex;
+      align-items: center;
+      justify-content: right;
+      margin-top: -115px;
+      margin-left: 50px;
+    }
 
-.right-panel img {
-  width: 500px;
-  padding-top: 1px;
-  padding-bottom: 100px;
-}
-.location-section {
+    .right-panel img {
+      width: 500px;
+      padding-top: 1px;
+      padding-bottom: 100px;
+    }
+
+    .location-section {
       display: flex;
       align-items: center;
       gap: 10px;
       margin-left: 58px;
     }
+
     .location-texts {
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
+
     .timeline {
       display: flex;
       flex-direction: column;
       align-items: center;
     }
+
     .timeline-dot {
       width: 12px;
       height: 12px;
       background-color: #00703C;
       border-radius: 50%;
     }
+
     .timeline-line {
       width: 2px;
       height: 20px;
       background-color: #00703C;
     }
-  </style>
-  <script>
-    function salinVA() {
-      const va = "1234567890123456"; // Nomor VA asli
-      navigator.clipboard.writeText(va).then(function() {
-        alert("Nomor virtual account telah disalin!");
-      }, function(err) {
-        alert("Gagal menyalin!");
-      });
+
+    .method {
+      background-color: #fff;
+      text-align: center;
+      border: 1px solid #ddd;
+      border-radius: 30px;
+      padding: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     }
-  </script>
+
+    input {
+      width: 400px;
+      border-color: #00723F;
+      border-width: 0.1em;
+      border-radius: 15px;
+      height: 2em;
+      font-size: 1.5em;
+      box-shadow: none;
+      padding: 0.1em;
+    }
+
+    .submission {
+      color: white;
+      background-color: #00723F;
+      width: 100px;
+      margin-left: 10px;
+    }
+  </style>
 </head>
+
 <body>
   <div class="sidebar">
     <div class="top-section">
@@ -203,35 +239,31 @@
 
   <div class="content">
     <div class="title-area">
-      <div class="title">Top Up</div>
-      <div class="subtitle">BCA</div>
+      <div class="title">Top Up <?php echo $method; ?></div>
     </div>
     <div class="main-panel">
       <div class="left-panel">
-        <img src="assets/images/logobca.png" alt="Logo BCA"> BCA
+        <div class="method">
+          <img src="assets/images/logo<?php echo $method; ?>.png" alt="Logo <?php echo $method; ?>"
+            style="width:100px;height:100px;">
+        </div>
         <div class="va-section">
-          <img src="assets/images/LogoSalin.png" alt="Salin" width="36">
-          VIRTUAL ACCOUNT NO.
+          Insert the amount of money you want to add to your balance!
         </div>
-        <div class="va-box">1234 5678 9012 3456</div>
-        <button class="copy-button" onclick="salinVA()">salin</button>
-
-        <div class="info-text">
-          <strong>Cara isi pedopay</strong><br>
-          BIAYA ADMIN Rp1.000 &nbsp;&nbsp; MINIMUM TOPUP Rp.10.000
-        </div>
-
-        <div class="location-section">
-          <div class="timeline">
-            <div class="timeline-dot"></div>
-            <div class="timeline-line"></div>
-            <div class="timeline-dot"></div>
-          </div>
-          <div class="location-texts">
-            <div>blabla</div>
-            <div>blabla</div>
-          </div>
-        </div>
+        <br>
+        <form action="topUpConfirmation.php" method="post">
+          <input type="text" name="amount">
+          <input class="submission" type="submit">
+        </form>
+        <?php
+        if (isset($_GET['err'])) {
+          if ($_GET['err'] == 1) {
+            echo "        <div class='va-section' style='color:red;'>
+          Amount can't be below then zero!
+        </div>";
+          }
+        }
+        ?>
       </div>
       <div class="right-panel">
         <img src="assets/images/LogoPedoBuPerempuan.png" alt="Ilustrasi Top Up">
@@ -239,4 +271,5 @@
     </div>
   </div>
 </body>
+
 </html>
