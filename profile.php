@@ -1,17 +1,17 @@
 <?php
-require_once 'Library/Entities/User.php';
-use App\Entities\User;
 session_start();
-if (isset($_SESSION['user'])) {
-  $User = $_SESSION['user'];
-}
-else {
+
+// Pastikan data user ada di session dan berbentuk array.
+if (isset($_SESSION['user']) && is_array($_SESSION['user'])) {
+    $user = $_SESSION['user'];
+} else {
+    // Jika data user tidak ada, redirect ke halaman login.
+    header("Location: login.php");
+    exit();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,14 +21,12 @@ else {
     * {
       box-sizing: border-box;
     }
-
     body {
       margin: 0;
       font-family: 'DM Sans', sans-serif;
       display: flex;
       overflow-x: hidden;
     }
-
     .sidebar {
       width: 80px;
       background-color: #F8F8F8;
@@ -44,12 +42,10 @@ else {
       left: 0;
       z-index: 1000;
     }
-
     .sidebar img {
       width: 40px;
       height: 40px;
     }
-
     .sidebar .top-section,
     .sidebar .middle-section,
     .sidebar .bottom-section {
@@ -57,14 +53,12 @@ else {
       flex-direction: column;
       align-items: center;
     }
-
     .sidebar button {
       background: none;
       border: none;
       margin: 10px 0;
       cursor: pointer;
     }
-
     .content {
       margin-left: 80px;
       padding: 30px;
@@ -72,24 +66,20 @@ else {
       display: flex;
       justify-content: space-between;
     }
-
     .left-profile {
       width: 35%;
       padding: 20px;
     }
-
     .left-profile h1 {
       font-size: 32px;
       color: #008000;
     }
-
     .profile-pic {
       width: 100px;
       height: 100px;
       border-radius: 20px;
       object-fit: cover;
     }
-
     .pedopay-box {
       background-color: #f6f6f6;
       padding: 20px;
@@ -101,23 +91,19 @@ else {
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
       margin-top: 20px;
     }
-
     .pedopay-box button {
       background-color: #f6f6f6;
       border: none;
       cursor: pointer;
     }
-
     .pedopay-box button img {
       width: 48px;
       height: 52px;
     }
-
     .pedopay-info .dompet img {
       width: 120px;
       height: 40px;
     }
-
     .right-menu {
       width: 60%;
       display: flex;
@@ -125,7 +111,6 @@ else {
       gap: 15px;
       padding: 20px;
     }
-
     .menu-item {
       display: flex;
       align-items: center;
@@ -137,18 +122,15 @@ else {
       text-decoration: none;
       color: black;
     }
-
     .menu-item:hover {
       color: #4CAF50;
     }
-
     .menu-item img {
       width: 24px;
       height: 24px;
     }
   </style>
 </head>
-
 <body>
   <div class="sidebar">
     <div class="top-section">
@@ -164,64 +146,48 @@ else {
       <button onclick="location.href='logout.php'"><img src="assets/images/LogoLogOut.png" alt="Logout"></button>
     </div>
   </div>
-
   <div class="content">
     <div class="left-profile">
       <h1>PROFILE</h1>
       <img src="assets/images/profile.png" alt="Profile Picture" class="profile-pic">
-      <p><strong>
-          <?php
-          echo $User->getUsername();
-          ?>
-        </strong><br>
-        <?php
-        echo $User->getPhoneNumber();
-        ?>
+      <p>
+        <strong><?php echo htmlspecialchars($user['username']); ?></strong><br>
+        <?php echo htmlspecialchars($user['phoneNumber']); ?>
       </p>
-
       <div class="pedopay-box">
         <div class="pedopay-info">
-          <div class="dompet"><img src="assets/images/pedopay.png" alt="Pedopay"><br></div>
-
-          <?php
-          echo 'Rp' .$User->getBalance();
-          ?>
+          <div class="dompet">
+            <img src="assets/images/pedopay.png" alt="Pedopay"><br>
+          </div>
+          <?php echo 'Rp' . htmlspecialchars($user['balance']); ?>
         </div>
         <button><img src="assets/images/LogoTopUp.png" alt="Top Up"></button>
         <button><img src="assets/images/LogoTransfer.png" alt="Transfer"></button>
       </div>
     </div>
-
     <div class="right-menu">
       <a class="menu-item" href="order.php">
         <img src="assets/images/icon_order.png" alt="Order Icon"> Order <span style="margin-left:auto;">></span>
       </a>
       <a class="menu-item" href="home.php">
-        <img src="assets/images/icon_discount.png" alt="Discount Icon"> Discount <span
-          style="margin-left:auto;">></span>
+        <img src="assets/images/icon_discount.png" alt="Discount Icon"> Discount <span style="margin-left:auto;">></span>
       </a>
       <a class="menu-item" href="home.php">
-        <img src="assets/images/icon_payment.png" alt="Payment Icon"> Payment Method <span
-          style="margin-left:auto;">></span>
+        <img src="assets/images/icon_payment.png" alt="Payment Icon"> Payment Method <span style="margin-left:auto;">></span>
       </a>
-      <a class="menu-item" href="home.php">
-        <img src="assets/images/icon_driver.png" alt="Driver Icon"> Driver Partner <span
-          style="margin-left:auto;">></span>
+      <a class="menu-item" href="driverRegis.php">
+        <img src="assets/images/icon_driver.png" alt="Driver Icon"> Driver Partner <span style="margin-left:auto;">></span>
       </a>
       <a class="menu-item" href="home.php">
         <img src="assets/images/icon_help.png" alt="Help Icon"> Help & Report <span style="margin-left:auto;">></span>
       </a>
       <a class="menu-item" href="home.php">
-        <img src="assets/images/icon_language.png" alt="Language Icon"> Language <span
-          style="margin-left:auto;">></span>
+        <img src="assets/images/icon_language.png" alt="Language Icon"> Language <span style="margin-left:auto;">></span>
       </a>
       <a class="menu-item" href="home.php">
-        <img src="assets/images/icon_logout.png" alt="Logout Icon"> Log Out Account <span
-          style="margin-left:auto;">></span>
+        <img src="assets/images/icon_logout.png" alt="Logout Icon"> Log Out Account <span style="margin-left:auto;">></span>
       </a>
     </div>
-
   </div>
 </body>
-
 </html>
