@@ -3,5 +3,5 @@ require_once 'CreateInvoice.php';
 
 use App\Invoice\CreateInvoice;
 // Buat nge test berhasil apa endaknya (Nama file gaboleh pakai titik dua jadi semua spasi pakai underscore ya)
-$struk = new CreateInvoice('001_002_003',date("Y-m-d H:i:s"),'Passengers','Drivers','P 1 BERAK','KENTUT','BERAK','50','2025-05-02 17:15:12',150000,15000,16500);
+$struk = new CreateInvoice(invoice_id: '001_002_003',passenger_name: 'Passengers',driver_name: 'Drivers',vin_number: 'P 1 BERAK',from: 'KENTUT',destination: 'BERAK',distance: 50,order_time: '2025-05-02 17:15:12',charge: 150000);
 ?>

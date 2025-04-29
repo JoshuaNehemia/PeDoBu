@@ -11,7 +11,6 @@ class CreateInvoice
 
     public function __construct(
         $invoice_id,
-        $date_now,
         $passenger_name,
         $driver_name,
         $vin_number,
@@ -19,15 +18,11 @@ class CreateInvoice
         $destination,
         $distance,
         $order_time,
-        $charge,
-        $fee,
-        $tax
+        $charge
     ) {
         $this->invoice_id = $invoice_id;
-        include ('QRGenerator.php');
         $this->content = $this->generateInvoice(
             $invoice_id,
-            $date_now,
             $passenger_name,
             $driver_name,
             $vin_number,
@@ -35,20 +30,23 @@ class CreateInvoice
             $destination,
             $distance,
             $order_time,
-            $charge,
-            $fee,
-            $tax
+            $charge
         );
 
         // Sanitize parts for the file name
-        $safe_date = preg_replace('/[^a-zA-Z0-9_-]/', '_', $date_now);
         $safe_name = preg_replace('/[^a-zA-Z0-9_-]/', '_', $passenger_name);
 
         // Append sanitized file name with .txt extension
-        $fileName = "invoice_{$invoice_id}_{$safe_date}_{$safe_name}_pedobu.txt";
+        $fileName = "invoice_{$invoice_id}_{$order_time}_{$safe_name}_pedobu.txt";
         $this->newFilePath .= $fileName;
-
+        $this->GetQRCodeForInvoice();
         $this->CreateNewInvoice();
+    }
+
+    function GetQRCodeForInvoice()
+    {
+        $invoice_id = $this->invoice_id;
+        include ('QRGenerator.php');
     }
 
     private function CreateNewInvoice()
@@ -79,7 +77,6 @@ class CreateInvoice
 
     private function generateInvoice(
         $invoice_id,
-        $date_now,
         $passenger_name,
         $driver_name,
         $vin_number,
@@ -87,11 +84,9 @@ class CreateInvoice
         $destination,
         $distance,
         $order_time,
-        $charge,
-        $fee,
-        $tax
+        $charge
     ) {
-        $total = $charge + $fee + $tax;
+        $total = $charge;
 
         $invoice = <<<EOD
 ██████╗ ███████╗██████╗  █████╗ ██████╗ ██╗  ██╗
@@ -107,7 +102,6 @@ Your Personal Driver, Anytime, Anywhere
 ------------------------------------------------------------
 
 Invoice Number    : {$invoice_id}
-Date              : {$date_now}
 
 Passenger Name    : {$passenger_name}
 Driver Name       : {$driver_name}
@@ -127,8 +121,6 @@ Fare Summary
 Description         | Amount
 --------------------|--------------
 Charge              | Rp {$charge}
-Booking Fee         | Rp {$fee}
-Tax Fee             | Rp {$tax}
 --------------------|--------------
 Total Cost          | Rp {$total}
 
