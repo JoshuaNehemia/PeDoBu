@@ -175,7 +175,7 @@ if (isset($_SESSION['user']) && is_array($_SESSION['user'])) {
       <a class="menu-item" href="home.php">
         <img src="assets/images/icon_payment.png" alt="Payment Icon"> Payment Method <span style="margin-left:auto;">></span>
       </a>
-      <a class="menu-item">
+      <a class="menu-item" href="driverLogin.php">
         <img src="assets/images/icon_driver.png" alt="Driver Icon"> Driver Partner <span style="margin-left:auto;">></span>
       </a>
       <a class="menu-item" href="home.php">
