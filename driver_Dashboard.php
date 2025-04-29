@@ -277,10 +277,10 @@ iframe {
         <img src="assets/images/LogoPedoBu.png" alt="Car" class="sidebar-icon">
         <div class="tengahPlis">
         <img src="assets/images/LogoMotor.png" alt="Motorcycle" class="sidebar-icon">
-        <img src="assets/images/LogoHistory.png" alt="Box" class="sidebar-icon">
-        <img src="assets/images/LogoProfile.png" alt="Person" class="sidebar-icon">
+        <button onclick="location.href='driver_history.php'"><img src="assets/images/LogoHistory.png" alt="Box" class="sidebar-icon">
+        <button onclick="location.href='driver_profile.php'"><img src="assets/images/LogoProfile.png" alt="Person" class="sidebar-icon">
         </div>
-        <img src="assets/images/LogoLogOut.png" alt="Logout" class="sidebar-icon logout-icon">
+        <button onclick="location.href='driverLogin.php'"><img src="assets/images/LogoLogOut.png" alt="Logout" class="sidebar-icon logout-icon"></button>
     </nav>
         <main class="content">
             <div class="order-header">
