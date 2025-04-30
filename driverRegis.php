@@ -191,6 +191,10 @@ session_start();
           <input type="text" id="username" name="username" placeholder="Your username" required>
         </div>
         <div class="form-group">
+          <label for="fullname">Full Name *</label>
+          <input type="text" id="fullname" name="fullname" placeholder="Your full name" required>
+        </div>
+        <div class="form-group">
           <label for="email">Email *</label>
           <input type="email" id="email" name="email" placeholder="Your email address" required>
         </div>
