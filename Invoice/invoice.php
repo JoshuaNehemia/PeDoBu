@@ -39,6 +39,7 @@ if (isset($_GET['order_id'])) {
     $destination = $destinationA->__toString();
     $distance = $distanceA;
     $order_time = $orderA->getOrderDate() . '' . $orderA->getMadeTime();
+    $order_time_display = $order_time;
     $date = new DateTime($order_time);
     $order_time = $date->format("Y_m_d_H_i_s");
 
@@ -97,7 +98,7 @@ if (isset($_GET['order_id'])) {
         </tr>
         <tr>
             <td><strong>Ride Date/Time</strong></td>
-            <td><?= $order_time ?></td>
+            <td><?= date("Y F d H:i",strtotime($order_time_display)) ?></td>
         </tr>
     </table>
 
