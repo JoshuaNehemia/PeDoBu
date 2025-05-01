@@ -183,7 +183,7 @@
 
     <div class="tab-buttons">
       <button class="active">Motorcycle</button>
-      <button class="inactive" onclick="location.href='ordercar.php'">Car</button>
+      <button class="inactive">Car</button>
     </div>
 
     <!-- CARD 1 -->
