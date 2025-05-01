@@ -11,7 +11,6 @@ use App\Entities\User;
 if (isset($_POST['username'], $_POST['password'])) {
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
-    
     if ($username == 'admin' && $password == 'admin') {
         $_SESSION['user'] = [
             'username'    => 'admin',
@@ -22,7 +21,6 @@ if (isset($_POST['username'], $_POST['password'])) {
         header('Location: admin_cust_info.php');
         exit();
     }
-
     $user = UserDAO::Get_User_Login($username, $password);
     
     if ($user !== null) {

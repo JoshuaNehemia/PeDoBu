@@ -161,7 +161,7 @@ if (isset($_SESSION['user']) && is_array($_SESSION['user'])) {
           </div>
           <?php echo 'Rp' . htmlspecialchars($user['balance']); ?>
         </div>
-        <button><img src="assets/images/LogoTopUp.png" alt="Top Up"></button>
+        <button><a href="topupmethod.php"><img src="assets/images/LogoTopUp.png" alt="Top Up"></a></button>
         <button><img src="assets/images/LogoTransfer.png" alt="Transfer"></button>
       </div>
     </div>
@@ -175,7 +175,7 @@ if (isset($_SESSION['user']) && is_array($_SESSION['user'])) {
       <a class="menu-item" href="home.php">
         <img src="assets/images/icon_payment.png" alt="Payment Icon"> Payment Method <span style="margin-left:auto;">></span>
       </a>
-      <a class="menu-item" href="driverLogin.php">
+      <a class="menu-item" href="driverlogin.php">
         <img src="assets/images/icon_driver.png" alt="Driver Icon"> Driver Partner <span style="margin-left:auto;">></span>
       </a>
       <a class="menu-item" href="home.php">

@@ -226,6 +226,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <div class="button-container">
                         <button type="button" class="btn-decrypt" onclick="window.location.href='admin_decrypt.php'">Back</button>
+                        <button type="button" class="btn-decrypt">Download</button>
                     </div>
                 </div>
             </div>

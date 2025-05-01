@@ -1,7 +1,7 @@
 SELECT 
     ord.id AS 'invoice_id',
     usr.fullName AS 'passenger',
-    dri.username AS 'drivers_name',
+    dri.fullName AS 'drivers_name',
     loc.name AS 'from',
     locd.name AS 'destination',
     distTab.distance AS 'distance',
@@ -16,4 +16,4 @@ INNER JOIN (
     SELECT dist.from, dist.destination, dist.distance
     FROM distance dist
 ) AS distTab ON distTab.from = ord.distance_from AND distTab.destination = ord.distance_destination
-WHERE ord.id = ?;
+WHERE ord.id is null;
