@@ -269,7 +269,7 @@ if (isset($_POST['order'])) {
       <button onclick="location.href='home.php'"><img src="assets/images/homeRedup.png" alt="Home"></button>
       <button onclick="location.href='order.php'"><img src="assets/images/LogoMotor.png" alt="Order"></button>
       <button onclick="location.href='history.php'"><img src="assets/images/LogoHistory.png" alt="History"></button>
-      <button onclick="location.href='index.php'"><img src="assets/images/LogoProfile.png" alt="Profile"></button>
+      <button onclick="location.href='Profile.php'"><img src="assets/images/LogoProfile.png" alt="Profile"></button>
     </div>
     <div class="bottom-section">
       <button onclick="location.href='logout.php'"><img src="assets/images/LogoLogOut.png" alt="Logout"></button>

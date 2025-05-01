@@ -209,7 +209,7 @@ use App\Database\HistoryDAO;
       <button onclick="location.href='profile.php'"><img src="assets/images/LogoProfile.png" alt="Profile"></button>
     </div>
     <div class="bottom-section">
-      <button onclick="location.href='index.php'"><img src="assets/images/LogoLogOut.png" alt="Logout"></button>
+      <button onclick="location.href='profile.php'"><img src="assets/images/LogoLogOut.png" alt="Logout"></button>
     </div>
   </div>
 
