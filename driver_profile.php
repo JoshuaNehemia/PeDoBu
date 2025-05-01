@@ -1,12 +1,11 @@
 <?php
 session_start();
 
-// Pastikan data user ada di session dan berbentuk array.
-if (isset($_SESSION['user']) && is_array($_SESSION['user'])) {
-    $user = $_SESSION['user'];
+if (isset($_SESSION['driver']) && is_array($_SESSION['driver'])) {
+    $driver = $_SESSION['driver'];
 } else {
     // Jika data user tidak ada, redirect ke halaman login.
-    header("Location: login.php");
+    header("Location: driverLogin.php");
     exit();
 }
 ?>
@@ -150,19 +149,9 @@ if (isset($_SESSION['user']) && is_array($_SESSION['user'])) {
       <h1>PROFILE</h1>
       <img src="assets/images/profile.png" alt="Profile Picture" class="profile-pic">
       <p>
-        <strong><?php echo htmlspecialchars($user['username']); ?></strong><br>
-        <?php echo htmlspecialchars($user['phoneNumber']); ?>
+      <strong><?php echo htmlspecialchars($driverData['fullname'] ?? 'Nama Driver'); ?></strong><br>
+      <?php echo htmlspecialchars($driverData['phoneNumber'] ?? 'Nomor tidak tersedia'); ?>
       </p>
-      <div class="pedopay-box">
-        <div class="pedopay-info">
-          <div class="dompet">
-            <img src="assets/images/pedopay.png" alt="Pedopay"><br>
-          </div>
-          <?php echo 'Rp' . htmlspecialchars($user['balance']); ?>
-        </div>
-        <button><img src="assets/images/LogoTopUp.png" alt="Top Up"></button>
-        <button><img src="assets/images/LogoTransfer.png" alt="Transfer"></button>
-      </div>
     </div>
     <div class="right-menu">
       <a class="menu-item" href="driver_history.php">

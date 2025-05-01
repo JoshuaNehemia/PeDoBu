@@ -12,6 +12,7 @@ class Database {
     private string $dbPassword = "";
     private string $dbName     = "pedobu"; //Sorry kuganti bentar mysqlku bermasaslah - Joshua
 
+
     private ?mysqli $conn = null;
 
     private function __construct() {

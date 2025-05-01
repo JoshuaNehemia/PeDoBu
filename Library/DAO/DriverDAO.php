@@ -92,6 +92,7 @@ public static function Get_Driver_Login($username, $password) {
 
             return new Driver(
                 $row['id'],
+                $row['fullName'],
                 $row['email'],
                 $encryptedPassword,  // Simpan password terenkripsi dalam objek jika diperlukan
                 (float)$row['phoneNumber'],
@@ -129,6 +130,7 @@ public static function Select_Driver_By_Id($username) {
 
         return new Driver(
             $row['id'],
+            $row['fullName'],
             $row['email'],
             $encryptedPassword, // still storing encrypted
             (float)$row['phoneNumber'],

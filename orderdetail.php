@@ -282,10 +282,11 @@ header("Refresh: 15");
         <p><strong>🧭 Pickup:</strong><br><?php echo htmlspecialchars($fromDisplay); ?></p>
         <hr>
         <p><strong>📍 Destination:</strong><br><?php echo htmlspecialchars($destinationDisplay); ?></p>
-        <?php 
-        if($driver->getUsername()!==1)
-        {
-          echo "<br><a href=\"Invoice/invoice.php?order_id={$idInvoice}\" class=\"print-button\">Print Order</a>";
+        <?php
+        if (isset($driver)) {
+          if ($driver->getUsername() !== 1) {
+            echo "<br><a href=\"Invoice/invoice.php?order_id={$idInvoice}\" class=\"print-button\">Print Order</a>";
+          }
         }
         ?>
       </div>

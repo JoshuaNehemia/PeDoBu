@@ -9,12 +9,13 @@ use App\Entities\Driver;
 use App\Database\DriverDAO;
 
 if (
-    isset($_POST['username'], $_POST['email'], $_POST['password'],
+    isset($_POST['username'], $_POST['fullname'],$_POST['email'], $_POST['password'],
         $_POST['phoneNumber'], $_POST['id_number'],
         $_POST['license_number'], $_POST['plate_number'],
         $_POST['driver_type'])
 ) {
     $username      = trim($_POST['username']);
+    $fullname      =trim($_POST['fullname']);
     $email         = trim($_POST['email']);
     $password      = trim($_POST['password']);
     $phoneNumber   = (float)trim($_POST['phoneNumber']);
@@ -26,6 +27,7 @@ if (
     // Buat objek Driver dengan data dari form
     $newDriver = new Driver(
         $username,
+        $fullname,
         $email,
         $password,
         $phoneNumber,
@@ -38,9 +40,11 @@ if (
     $result = DriverDAO::Insert_Driver_SignUp($newDriver);
 
     if ($result) {
-        $_SESSION['driver'] = [
+        $_SESSION['drivername'] = [
             'username'   => $username,
+            'fullname'   => $fullname,
             'email'      => $email,
+            'phoneNumber'=> $phoneNumber,
             'driverType' => $driverType
         ];
         header('Location: driver_dashboard.php');

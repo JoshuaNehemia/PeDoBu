@@ -1,0 +1,40 @@
+██████╗ ███████╗██████╗  █████╗ ██████╗ ██╗  ██╗
+██╔══██╗██╔════╝██╔══██╗██╔══██╗██╔══██╗██║  ██║
+██████╔╝█████╗  ██║  ██║██║  ██║███████║██║  ██║
+██╔═══╝ ██╔══╝  ██║  ██║██║  ██║██╔══██║██║  ██║
+██║     ███████╗██████╔╝ █████╔╝██████╔╝ █████╔╝
+╚═╝     ╚══════╝╚═════╝  ╚════╝ ╚═════╝  ╚════╝
+
+PeDoBu - Personal Driver Buddy
+Your Personal Driver, Anytime, Anywhere
+
+------------------------------------------------------------
+
+Invoice Number    : 4
+
+Passenger Name    : Full Name
+Driver Name       : bakso
+Vehicle Plate No. : L 1  BAKSO
+
+------------------------------------------------------------
+
+Pickup Location   : Kantor Gubernur Jawa Timur, Jalan Pahlawan, 110, Genteng, Surabaya, Jawa Timur
+Drop-off Location : PT. Maspion, Jalan Rungkut Industri, 207, Tenggilis Mejoyo, Surabaya, Jawa Timur
+Trip Distance     : 9.6 km
+Ride Date/Time    : 2025_05_01_06_01_59
+
+------------------------------------------------------------
+
+Fare Summary
+
+Description         | Amount
+--------------------|--------------
+Charge              | Rp 38800
+--------------------|--------------
+Total Cost          | Rp 38800
+
+Payment Status      : Paid
+------------------------------------------------------------
+
+Thank you for riding with PeDoBu!
+For support, contact us at support@pedobu.com
