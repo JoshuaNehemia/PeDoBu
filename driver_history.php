@@ -195,7 +195,6 @@
           <div>
             <strong>Customer</strong><br>
             <span>Ratna</span><br>
-            <span style="font-size: 12px;">DD 1234 ABC</span>
           </div>
         </div>
         <div class="location-section">
@@ -213,7 +212,7 @@
       <div class="right-section">
       <div class="buttons">
         <div class="price">Rp.xx.xxx</div>
-        <button onclick="location.href='checkorder.php'">Check Order</button>
+        <button onclick="location.href='driver_checkorder.php'">Check Order</button>
       </div>
     </div>
 </div>
@@ -245,7 +244,7 @@
   <div class="price">Rp.xx.xxx</div>
   <div class="right-section">
   <div class="buttons">
-    <button onclick="location.href='checkorder.php'">Check Order</button>
+    <button onclick="location.href='driver_checkorder.php'">Check Order</button>
   </div>
 </div>
 </div>
