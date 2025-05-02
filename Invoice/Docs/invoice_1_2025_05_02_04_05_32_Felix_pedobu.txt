@@ -1,0 +1,40 @@
+██████╗ ███████╗██████╗  █████╗ ██████╗ ██╗  ██╗
+██╔══██╗██╔════╝██╔══██╗██╔══██╗██╔══██╗██║  ██║
+██████╔╝█████╗  ██║  ██║██║  ██║███████║██║  ██║
+██╔═══╝ ██╔══╝  ██║  ██║██║  ██║██╔══██║██║  ██║
+██║     ███████╗██████╔╝ █████╔╝██████╔╝ █████╔╝
+╚═╝     ╚══════╝╚═════╝  ╚════╝ ╚═════╝  ╚════╝
+
+PeDoBu - Personal Driver Buddy
+Your Personal Driver, Anytime, Anywhere
+
+------------------------------------------------------------
+
+Invoice Number    : 1
+
+Passenger Name    : Felix
+Driver Name       : vivi
+Vehicle Plate No. : 23622
+
+------------------------------------------------------------
+
+Pickup Location   : Ciputra World Surabaya, Jalan Mayjen Sungkono, 87-89, Dukuh Pakis, Surabaya, Jawa Timur
+Drop-off Location : Perumahan Tenggilis Mejoyo Blok A, Jalan Tenggilis Mejoyo, 3, Tenggilis Mejoyo, Surabaya, Jawa Timur
+Trip Distance     : 8.8 km
+Ride Date/Time    : 2025_05_02_04_05_32
+
+------------------------------------------------------------
+
+Fare Summary
+
+Description         | Amount
+--------------------|--------------
+Charge              | Rp 36400
+--------------------|--------------
+Total Cost          | Rp 36400
+
+Payment Status      : Paid
+------------------------------------------------------------
+
+Thank you for riding with PeDoBu!
+For support, contact us at support@pedobu.com
