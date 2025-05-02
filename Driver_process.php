@@ -40,7 +40,7 @@ if (
     $result = DriverDAO::Insert_Driver_SignUp($newDriver);
 
     if ($result) {
-        $_SESSION['drivername'] = [
+        $_SESSION['driver'] = [
             'username'   => $username,
             'fullname'   => $fullname,
             'email'      => $email,
