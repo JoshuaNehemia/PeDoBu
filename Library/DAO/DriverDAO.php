@@ -92,7 +92,7 @@ public static function Get_Driver_Login($username, $password) {
 
             return new Driver(
                 $row['id'],
-                $row['fullName'],
+                $row['username'],
                 $row['email'],
                 $encryptedPassword,  // Simpan password terenkripsi dalam objek jika diperlukan
                 (float)$row['phoneNumber'],
@@ -130,7 +130,7 @@ public static function Select_Driver_By_Id($username) {
 
         return new Driver(
             $row['id'],
-            $row['fullName'],
+            $row['username'],
             $row['email'],
             $encryptedPassword, // still storing encrypted
             (float)$row['phoneNumber'],
@@ -144,6 +144,39 @@ public static function Select_Driver_By_Id($username) {
         return null;
     }
 }
+//Kutambahin
+public static function Select_Driver_By_USN($username) {
+    $conn = Database::getConnection();
+
+    error_log("Fetching driver data for username: " . $username);
+
+    $stmt = $conn->prepare("SELECT * FROM drivers WHERE username = ?");
+    if (!$stmt) {
+        error_log("Prepare failed: " . $conn->error);
+        return null;
+    }
+
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result && $row = $result->fetch_assoc()) {
+        return new Driver(
+            $row['id'],
+            $row['username'],
+            $row['email'],
+            $row['password'],
+            $row['phoneNumber'],
+            $row['idNumber'],
+            $row['licenceNumber'],
+            $row['plateNumber'],
+            $row['driverType']
+        );
+    }
+
+    return null;
+}
+
 
 }
 ?>

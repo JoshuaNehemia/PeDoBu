@@ -1,0 +1,40 @@
+██████╗ ███████╗██████╗  █████╗ ██████╗ ██╗  ██╗
+██╔══██╗██╔════╝██╔══██╗██╔══██╗██╔══██╗██║  ██║
+██████╔╝█████╗  ██║  ██║██║  ██║███████║██║  ██║
+██╔═══╝ ██╔══╝  ██║  ██║██║  ██║██╔══██║██║  ██║
+██║     ███████╗██████╔╝ █████╔╝██████╔╝ █████╔╝
+╚═╝     ╚══════╝╚═════╝  ╚════╝ ╚═════╝  ╚════╝
+
+PeDoBu - Personal Driver Buddy
+Your Personal Driver, Anytime, Anywhere
+
+------------------------------------------------------------
+
+Invoice Number    : 1
+
+Passenger Name    : joshua nehemia s
+Driver Name       : Yanto
+Vehicle Plate No. : L 1 YANTO
+
+------------------------------------------------------------
+
+Pickup Location   : Apartemen Puncak Dharmahusada, Jalan Rungkut Mejoyo Selatan, 5, Tenggilis Mejoyo, Surabaya, Jawa Timur
+Drop-off Location : PT. Maspion, Jalan Rungkut Industri, 207, Tenggilis Mejoyo, Surabaya, Jawa Timur
+Trip Distance     : 7.5 km
+Ride Date/Time    : 2025_05_02_02_42_14
+
+------------------------------------------------------------
+
+Fare Summary
+
+Description         | Amount
+--------------------|--------------
+Charge              | Rp 32500
+--------------------|--------------
+Total Cost          | Rp 32500
+
+Payment Status      : Paid
+------------------------------------------------------------
+
+Thank you for riding with PeDoBu!
+For support, contact us at support@pedobu.com
