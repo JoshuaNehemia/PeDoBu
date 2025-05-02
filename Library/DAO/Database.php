@@ -10,7 +10,7 @@ class Database {
     private string $dbServer   = "localhost";
     private string $dbUser     = "root";
     private string $dbPassword = "";
-    private string $dbName     = "pedobu"; //Sorry kuganti bentar mysqlku bermasaslah - Joshua
+    private string $dbName     = "pedobub"; //Sorry kuganti bentar mysqlku bermasaslah - Joshua
 
 
     private ?mysqli $conn = null;

@@ -4,7 +4,7 @@
 // Check if the invoice_id is set (this comes from the main file)
 if (isset($invoice_id)) {
     // Use the invoice_id to generate the URL or whatever logic is needed
-    $urlAddress = 'http://localhost/pedobu/Invoice/invoice.php?invoice_id=' . $invoice_id;
+    $urlAddress = 'http://localhost/pedobu/Invoice/invoice.php?order_id=' . $invoice_id;
 
     // URL-encode the full URL
     $url = urlencode($urlAddress);

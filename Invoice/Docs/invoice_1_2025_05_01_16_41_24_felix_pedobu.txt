@@ -1,0 +1,40 @@
+██████╗ ███████╗██████╗  █████╗ ██████╗ ██╗  ██╗
+██╔══██╗██╔════╝██╔══██╗██╔══██╗██╔══██╗██║  ██║
+██████╔╝█████╗  ██║  ██║██║  ██║███████║██║  ██║
+██╔═══╝ ██╔══╝  ██║  ██║██║  ██║██╔══██║██║  ██║
+██║     ███████╗██████╔╝ █████╔╝██████╔╝ █████╔╝
+╚═╝     ╚══════╝╚═════╝  ╚════╝ ╚═════╝  ╚════╝
+
+PeDoBu - Personal Driver Buddy
+Your Personal Driver, Anytime, Anywhere
+
+------------------------------------------------------------
+
+Invoice Number    : 1
+
+Passenger Name    : felix
+Driver Name       : 
+Vehicle Plate No. : 203842974
+
+------------------------------------------------------------
+
+Pickup Location   : City of Tomorrow (CITO), Jalan Ahmad Yani, 288, Wonocolo, Surabaya, Jawa Timur
+Drop-off Location : Masjid Al-Muhajirin, Jalan Kali Rungkut, 10, Tenggilis Mejoyo, Surabaya, Jawa Timur
+Trip Distance     : 4.6 km
+Ride Date/Time    : 2025_05_01_16_41_24
+
+------------------------------------------------------------
+
+Fare Summary
+
+Description         | Amount
+--------------------|--------------
+Charge              | Rp 23800
+--------------------|--------------
+Total Cost          | Rp 23800
+
+Payment Status      : Paid
+------------------------------------------------------------
+
+Thank you for riding with PeDoBu!
+For support, contact us at support@pedobu.com
